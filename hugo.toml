@@ -1,0 +1,32 @@
+baseURL = 'https://vitalvas.com/'
+languageCode = 'en-us'
+title = 'Vitaliy Vasylenko'
+theme = "lynx"
+googleAnalytics = "G-VESR9QT9W0"
+
+enableEmoji = true
+disableKinds = ["taxonomy", "term"]
+
+[author]
+  image = "profile.jpg"
+  alternative = "Vitaliy Vasylenko | VitalVas | DevOps Engineer | Software Engineer | Learner | Leader"
+  links = [
+    { github = "https://github.com/vitalvas" },
+    { githubsponsor = { href = "https://github.com/sponsors/vitalvas", text = "GitHub Sponsor" } },
+    { linkedin = "https://www.linkedin.com/in/vitalvas" },
+    { facebook = "https://www.facebook.com/VitalVas/" },
+    { instagram = "https://www.instagram.com/vitalvas/" },
+    { blog = { href = "https://blog.vitalvas.com/", text = "Tech Blog"} },
+  ]
+
+[markup.highlight]
+  noClasses = false
+
+[markup.goldmark]
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  keywords = "vitalvas,devops,software,engineer,developer,profile,blogger,learner,leader"
+  robots = "index,follow"
+  attribution = false

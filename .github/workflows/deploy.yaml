@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          extended: true
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            aws-region: us-east-1
+            role-to-assume: arn:aws:iam::966137286427:role/github-actions-vitalvas-vitalvas-com
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Deploy
+        run: aws s3 sync public/ s3://vitalvas.com/ --delete --acl=public-read --cache-control "max-age=43200, public"
