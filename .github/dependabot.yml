@@ -1,11 +1,10 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: weekly
-      day: sunday
+      interval: monthly
     reviewers:
-      - "vitalvas"
+      - vitalvas
     assignees:
-      - "vitalvas"
+      - vitalvas
