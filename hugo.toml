@@ -7,7 +7,7 @@ googleAnalytics = "G-VESR9QT9W0"
 enableEmoji = true
 disableKinds = ["taxonomy", "term"]
 
-[author]
+[params.author]
   image = "profile.jpg"
   alternative = "Vitaliy Vasylenko | VitalVas | DevOps Engineer | Software Engineer | Learner | Leader"
   links = [
