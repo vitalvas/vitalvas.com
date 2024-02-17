@@ -1,0 +1,18 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Contact: mailto:security@vitalvas.com
+Expires: 2026-12-14T05:00:00.000Z
+Encryption: https://vitalvas.com/pgp-key.txt
+Preferred-Languages: en, ua
+-----BEGIN PGP SIGNATURE-----
+
+iQFEBAEBCAAuFiEEZnkw9CCSCixtxRGKRsCrdDg3eKMFAmXRDeoQHG1lQHZpdGFs
+dmFzLmNvbQAKCRBGwKt0ODd4o4H7B/9pfdOrOQLL46ip/YBjNCQWthE8artrTlkz
+PMtzu4hRAaUAeBN9HEeSgFvkJm8B0GccdYBtnLIbYT49ITvPMoq4nkBWqjMB/Ujj
+YmgOAMAMqR45yyBq4Zw5gP5N0Gu/KTOzlAHRbD5c3rhQncsI3ElFDbieEOkvy5zf
+pZ0feTRSd0l/5quoiWRWye057k2kMnWF647IRu/AnVIvO736loROLOMU5vTQxaZD
+ZB9bLY8RxmTh59w3acWeZoPwEIF9J/dXdjGlHz9zid68oFcjAEPPVQxv60kcpFEK
+QnUd83TPeM7C55ytLZ6iONOCSHqA0rVZkAeut/9tZEYufyTMcsi/
+=If62
+-----END PGP SIGNATURE-----
