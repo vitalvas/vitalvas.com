@@ -12,7 +12,6 @@ disableKinds = ["taxonomy", "term"]
   alternative = "Vitaliy Vasylenko | VitalVas | DevOps Engineer | Software Engineer | Learner | Leader"
   links = [
     { github = "https://github.com/vitalvas" },
-    { githubsponsor = { href = "https://github.com/sponsors/vitalvas", text = "GitHub Sponsor" } },
     { linkedin = "https://www.linkedin.com/in/vitalvas" },
     { facebook = "https://www.facebook.com/VitalVas/" },
     { instagram = "https://www.instagram.com/vitalvas/" },
