@@ -29,13 +29,13 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
             aws-region: us-east-1
-            role-to-assume: arn:aws:iam::966137286427:role/github-actions-vitalvas-vitalvas-com
+            role-to-assume: ${{ secrets.AWS_REPO_ROLE }}
 
       - name: Build
         run: hugo --minify
 
       - name: Deploy
-        run: aws s3 sync public/ s3://vitalvas.com/ --delete
+        run: aws s3 sync --delete public/ s3://${{ secrets.AWS_BUCKET_SITE }}
 
       - name: Invalidate CloudFront
-        run: aws cloudfront create-invalidation --distribution-id E23GZE7Q7WY1GY --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_CLOUDFRONT_SITE }} --paths "/*"
