@@ -15,4 +15,4 @@
 #
 
 User-Agent: *
-Sitemap: {{ "sitemap.xml" | absURL }}
+Sitemap: https://vitalvas.com/sitemap.xml
