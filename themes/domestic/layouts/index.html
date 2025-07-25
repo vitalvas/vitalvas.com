@@ -1,0 +1,174 @@
+{{ define "main" }}
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark-bg-gradient">
+  <!-- Theme Toggle Button -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+      <svg class="sun-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+      </svg>
+      <svg class="moon-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="container mx-auto px-6 py-16">
+    <div class="max-w-2xl mx-auto">
+      
+      <!-- Profile Section -->
+      <div class="text-center mb-12">
+        {{ with .Site.Params.Author.image }}
+          {{ $src := . }}
+          {{ $resource := "" }}
+          {{ if $.Page.Resources.GetMatch $src }}
+            {{ $resource = $.Page.Resources.GetMatch $src }}
+          {{ else if resources.GetMatch $src }}
+            {{ $resource = resources.Get $src }}
+          {{ end }}
+          {{ with $resource }}
+            {{ $src = (.Fill "288x288").RelPermalink }}
+          {{ end }}
+          <div class="relative inline-block mb-8">
+            <img
+              class="w-32 h-32 rounded-full border-4 border-white dark-border shadow-xl"
+              src="{{ $src }}"
+              alt="{{ $.Site.Params.Author.name | default "Author" }}"
+            />
+            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-400/20 to-purple-400/20"></div>
+          </div>
+        {{ end }}
+        
+        <h1 class="text-4xl font-bold text-slate-900 dark-text-white mb-3">
+          {{ .Params.title | default .Site.Params.Author.name | default .Site.Title }}
+        </h1>
+        
+        {{ with .Site.Params.Author.alternative }}
+          <div class="text-lg text-slate-800 dark-text-slate-300 mb-6 font-medium">
+            {{ range $index, $item := . }}
+              {{ if gt $index 0 }} &#10022; {{ end }}{{ $item }}
+            {{ end }}
+          </div>
+        {{ end }}
+        
+        {{ with .Content }}
+          <div class="text-slate-800 dark-text-slate-300 leading-relaxed mb-8">
+            {{ . | emojify }}
+          </div>
+        {{ end }}
+      </div>
+
+      <!-- Navigation Cards -->
+      {{ with .Site.Params.navigation }}
+        <div class="grid gap-4 mb-12">
+          {{ range . }}
+            <a href="{{ .url }}" class="group block p-6 bg-white dark-bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-slate-200 dark-border-slate-700">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-xl font-semibold text-slate-900 dark-text-white">{{ .name }}</h3>
+                </div>
+                <svg class="w-6 h-6 text-slate-400 group-hover:text-{{ .color }}-700 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <!-- Social Links -->
+      {{ with .Site.Params.Author.links }}
+        <div>
+          <h2 class="text-sm font-semibold text-slate-500 dark-text-slate-400 uppercase tracking-wider mb-4 text-center">Connect</h2>
+          <div class="flex flex-wrap gap-3 justify-center">
+            {{ range $links := . }}
+              {{ range $type, $data := $links }}
+                {{ $href := $data }}
+                {{ $text := $type | title }}
+                {{ $target := "_blank" }}
+                {{ if reflect.IsMap $data }}
+                  {{ with $data.href }}{{ $href = . }}{{ end }}
+                  {{ with $data.text }}{{ $text = . }}{{ end }}
+                  {{ with $data.target }}{{ $target = . }}{{ end }}
+                {{ end }}
+                {{ $hrefWithUTM := $href }}
+                {{ if or (strings.Contains $href "github.com") (strings.Contains $href "linkedin.com") (strings.Contains $href "facebook.com") (strings.Contains $href "instagram.com") (strings.Contains $href "blog.vitalvas.com") }}
+                  {{ $separator := "?" }}
+                  {{ if strings.Contains $href "?" }}{{ $separator = "&" }}{{ end }}
+                  {{ $hrefWithUTM = printf "%s%sutm_source=vitalvas.com&utm_medium=profile&utm_campaign=social_links" $href $separator }}
+                {{ end }}
+                <a
+                  href="{{ $hrefWithUTM }}"
+                  target="{{ $target }}"
+                  rel="me noopener noreferrer"
+                  class="social-link social-link--{{ $type }}"
+                  data-type="{{ $type }}"
+                >
+                  {{ $text }}
+                </a>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+      
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  function updateTheme() {
+    const theme = localStorage.getItem('theme') || 'auto';
+    const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    
+    console.log('Current theme:', theme, 'isDark:', isDark); // Debug log
+    
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+      document.body.classList.remove('light-mode');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.add('light-mode');
+    }
+  }
+  
+  function toggleTheme() {
+    const currentTheme = localStorage.getItem('theme') || 'auto';
+    let newTheme;
+    
+    // Simplified toggle logic
+    if (currentTheme === 'light') {
+      newTheme = 'dark';
+    } else if (currentTheme === 'dark') {
+      newTheme = 'light';
+    } else {
+      // If auto, switch to opposite of current system preference
+      newTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
+    }
+    
+    console.log('Toggling from', currentTheme, 'to', newTheme); // Debug log
+    localStorage.setItem('theme', newTheme);
+    updateTheme();
+  }
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleTheme();
+    });
+  }
+  
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    if (localStorage.getItem('theme') === 'auto' || !localStorage.getItem('theme')) {
+      updateTheme();
+    }
+  });
+  
+  // Initial theme setup
+  updateTheme();
+});
+</script>
+{{ end }}

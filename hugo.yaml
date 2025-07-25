@@ -1,0 +1,29 @@
+baseURL: "https://vitalvas.com/"
+languageCode: "en-us"
+title: "Vitaliy Vasylenko"
+theme: "domestic"
+googleAnalytics: "G-VESR9QT9W0"
+
+taxonomies:
+  category: null
+  tag: null
+
+params:
+  keywords: "vitalvas,devops,software,engineer,developer,profile,blogger,learner,leader"
+  robots: "index,follow"
+  attribution: false
+  author:
+    image: "profile.jpg"
+    alternative:
+      - "SRE Engineer"
+      - "Software Engineer"
+      - "Learner"
+      - "Leader"
+    links:
+      - github: "https://github.com/vitalvas"
+      - linkedin: "https://www.linkedin.com/in/vitalvas"
+      - facebook: "https://www.facebook.com/VitalVas/"
+      - instagram: "https://www.instagram.com/vitalvas/"
+      - blog:
+          href: "https://blog.vitalvas.com/"
+          text: "Tech Blog"

@@ -1,4 +1,6 @@
 ---
 title: "Vitaliy Vasylenko"
-tags: ["vitalvas", "devops", "software", "engineer", "developer", "profile", "blogger", "learner", "leader"]
+description: "Vitaliy Vasylenko - SRE Engineer, Software Engineer, Learner & Leader. Passionate about DevOps, software engineering, and technology innovation."
 ---
+
+Welcome to my personal space on the internet!

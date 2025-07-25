@@ -1,0 +1,9 @@
+name = "Domestic"
+homepage = "https://github.com/vitalvas/vitalvas.com"
+tags = ["minimal", "responsive", "dark mode", "dark", "light", "personal", "links"]
+features = ["dark mode", "responsive", "links page"]
+min_version = "0.101.0"
+
+[author]
+  name = "Vitaliy Vasylenko"
+  homepage = "https://vitalvas.com"
